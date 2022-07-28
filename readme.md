@@ -1,0 +1,1 @@
+<p>J'ai implémenter une page <em>erreur</em>pour dire aux utilisateurs qu'il y aune erreur de manipulation</p>

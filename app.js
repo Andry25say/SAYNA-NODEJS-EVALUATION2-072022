@@ -26,9 +26,8 @@ app.get('/contact', (req, res) => {
     res.status(200).render('contact')
 })
 app.use((req, res) => {
-    res.status(300).redirect('/signup')
+    res.status(500).render('erreur',{err:'erreur survenue!!!'});
 })
-
 //Le serveur ecoute
 app.listen(port, () => {
-    console.log(`En attente sur le port ${port}`);})
+    console.log(`En attente sur le port ${port}`)})

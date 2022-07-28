@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../bd/mysql')
+const db = require('../bd/mysql');
 
 //les differents routes verbes
 router.get('/home', (req, res) => {
     db.query(`SELECT formation,note,avis FROM etudiants GROUP BY formation ORDER BY note DESC limit 4 `,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.status(500).render('erreur',{err:'erreur survenue!!!'});
             } else {
                 res.status(200).render('index', { result });
             }
@@ -20,7 +20,7 @@ router.post('/etudiants', (req, res) => {
         data,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.status(500).render('erreur',{err:'erreur survenue!!!'});
             } else {
                 res.status(300).redirect('home');
             }
@@ -33,7 +33,7 @@ router.get('/backend', (req, res) => {
     db.query(`SELECT avis FROM etudiants WHERE formation = 'Backend'`, [formation],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.status(500).render('erreur',{err:'erreur survenue!!!'});
             } else {
                 res.status(200).render('backend', { result });
             }
@@ -44,7 +44,7 @@ router.get('/frontend', (req, res) => {
     let formation = req.params.formation;
     db.query(`SELECT avis FROM etudiants WHERE formation = 'Frontend'`, [formation], (err, result) => {
         if (err) {
-            console.log(err);
+            res.status(500).render('erreur',{err:'erreur survenue!!!'});
         } else {
             res.status(200).render('frontend', { result })
         }
@@ -56,9 +56,9 @@ router.get('/marketing', (req, res) => {
     let formation = req.params.formation;
     db.query(`SELECT avis FROM etudiants WHERE formation = 'Marketing'`, [formation], (err, result) => {
         if (err) {
-            console.log(err);
+            res.status(500).render('erreur',{err:'erreur survenue!!!'});
         } else {
-            res.status(200).render('Marketing', { result })
+            res.status(200).render('Marketing', { result})
         }
 
     })
@@ -69,9 +69,9 @@ router.get('/uxui', (req, res) => {
     let formation = req.params.formation;
             db.query(`SELECT avis FROM etudiants WHERE formation = 'UX-UI'`, [formation], (err, result) => {
                 if (err) {
-                    console.log(err);
+                    res.status(500).render('erreur',{err:'erreur survenue!!!'});
                 } else {
-                    res.status(200).render('uxui', { result })
+                    res.status(200).render('uxui', { result})
                 }
             })
         })
