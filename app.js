@@ -2,7 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const routeEtudiants = require('./routes/etudiantsRoutes');
-const mysql = require('./bd/mysql');
+const mysql = require('./models/mysql');
 
 
 //instancier express

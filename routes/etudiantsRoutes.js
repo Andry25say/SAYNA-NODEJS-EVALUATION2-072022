@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../bd/mysql');
+const db = require('../models/mysql');
 
 //les differents routes verbes
 router.get('/home', (req, res) => {
