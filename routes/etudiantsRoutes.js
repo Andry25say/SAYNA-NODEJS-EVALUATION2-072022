@@ -13,16 +13,16 @@ router.get('/home', (req, res) => {
             }
         })
 })
-//routes Ajouter les étudiants dans la base de données
+//routes Ajouter les étudiants avec leurs avis dans la base de données
 router.post('/etudiants', (req, res) => {
     let data = req.body;
     db.query('INSERT INTO etudiants SET ?',
         data,
         (err, result) => {
             if (err) {
-                res.status(500).render('erreur',{err:'erreur survenue!!!'});
+                res.status(500).json({err:'erreur survenue!!!'});
             } else {
-                res.status(300).redirect('home');
+                res.status(200).json(data);
             }
         })
 })
